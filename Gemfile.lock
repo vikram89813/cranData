@@ -202,6 +202,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.3.0)
+    zlib (1.0.0)
 
 PLATFORMS
   ruby
@@ -225,6 +226,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
+  zlib
 
 RUBY VERSION
    ruby 2.6.3p62
