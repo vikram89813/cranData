@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  maintainer_id: 1
+  package_id: 1
+
+two:
+  maintainer_id: 1
+  package_id: 1
