@@ -5,11 +5,16 @@ require 'rubygems/package'
 namespace :seed_package do
 
 		task :download => :environment do
+
+      puts "Starting rake task seed_package:download"
+
+      # cleanup any old data
       Author.destroy_all
-			Author.destroy_all
+			AuthorPackage.destroy_all
       Maintainer.destroy_all
-      Package.destroy_all
 			MaintainerPackage.destroy_all
+      Package.destroy_all
+
 			response = HTTParty.get('https://cran.r-project.org/src/contrib/PACKAGES', {
 			headers: {
 				"Content-Type"=> "application/json",
@@ -47,10 +52,6 @@ namespace :seed_package do
         final_list.push(t_url)
       end
 
-      puts "========="
-      puts "URLs Constructed"
-      puts "========="
-
       variable_map = {
           'Package:' => :name,
           'Date/Publication:' => :date,
@@ -60,12 +61,13 @@ namespace :seed_package do
       }
 
       count = 0
+
+      # using threads for faster processing
 			threads = []
 			final_list.in_groups_of(10) do |group_uri|
 				group_uri.each do |uri|
 					threads << Thread.new {
 						count = count + 1
-						puts count
 						source = open(uri)
 						begin
 							tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(source))
