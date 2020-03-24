@@ -3,10 +3,11 @@
 An application to index some of the packages in a CRAN server with package name based search api.
 
 * to run the application start by git clone git@github.com:vikram89813/cranData.git
+* install ruby version `ruby 2.6.3p62`
 * `bundle install` inside the project folder.
 * setup your database by making necessary changes in `config/database.yml`
+* `rake db:create`
 * `rake db:migrate`
-* you can check the tables in `db/schema.rb`
 
 ##### At this point the application is ready 
 
